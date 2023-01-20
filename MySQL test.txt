@@ -1,0 +1,8 @@
+1. The first query has to return all products connected with the sub_category “Jewelry”.
+SELECT product_name, product_short_description, product_price_min, product_img_url, product_url FROM grommet_products p INNER JOIN grommet_product_categories pc ON p.id = pc.product_id INNER JOIN grommet_gifts_categories gc ON gc.id = pc.product_category_id where gc.sub_category = "Jewelry" AND p.is_sold_out IS FALSE;
+
+2. The second query has to return all products connected with the keyword “Hair accessor”.
+SELECT product_name, product_short_description, product_price_min, product_img_url, product_url FROM grommet_products p INNER JOIN grommet_product_to_keyword pk ON p.id = pk.product_id INNER JOIN grommet_product_keywords k ON k.id = pk.keyword_id where k.keyword = "Hair accessor" AND p.is_sold_out IS FALSE;
+
+3. The third query has to return all products connected either with sub_categories “Beauty & Personal Care” and “Skincare” (any of them!) or with the keyword “Aromatherapy”.
+SELECT product_name, product_short_description, product_price_min, product_img_url, product_url FROM grommet_products p INNER JOIN grommet_product_categories pc ON p.id = pc.product_id INNER JOIN grommet_gifts_categories gc ON gc.id = pc.product_category_id INNER JOIN grommet_product_to_keyword pk ON p.id = pk.product_id INNER JOIN grommet_product_keywords k ON k.id = pk.keyword_id where gc.sub_category IN ("Beauty & Personal Care", "Skincare") OR k.keyword = "Aromatherapy" AND p.is_sold_out IS FALSE;
